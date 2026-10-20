@@ -13,8 +13,36 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
-app.use(helmet());
+app.use(helmet());  
 app.use(morgan("dev"));
+
+app.use(async (req,res,next) => {
+    try{
+        const decision = await aj.protect(req, {
+            requested: 1
+        })
+    
+        if(decision.isDenied()){
+            if(decision.reason.isRateLimit()){
+                res.status(429).json({success: false, message: "Too many requests. Please try again later."});
+            }
+            else if(decision.reason.isBot()){
+                res.status(403).json({success: false, message: "Access denied. Bot detected."});
+            }
+            else {
+                res.status(403).json({success: false, message: "Forbidden."});
+            }
+            return
+        }
+
+        next()
+
+    }   catch (error) {
+        console.log("arcjet error", error);
+        next(error);
+    }
+    
+});
 
 app.use("/api/products", productRoutes);
 
