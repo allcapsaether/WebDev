@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const { DATABASE_URL } = process.env;
+const { PGHOST, PGUSER, PGPASSWORD, PGDATABASE } = process.env;
 
 export const sql = neon(
-    `${DATABASE_URL}`
+    `postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?sslmode=require&channel_binding=require`
 )

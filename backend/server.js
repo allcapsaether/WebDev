@@ -1,14 +1,15 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
-import dotenv from "dotenv";
 
 import productRoutes from "./routes/productRoutes.js";
 import { sql } from "./config/db.js";
 import { aj } from "./lib/arcjet.js"
 
-dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -47,6 +48,10 @@ app.use(async (req,res,next) => {
 
 app.use("/api/products", productRoutes);
 
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
 async function initDB() {
     try {
         await sql`
@@ -67,9 +72,3 @@ async function initDB() {
 
 
 };
-
-initDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
-});
