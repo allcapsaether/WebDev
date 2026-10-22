@@ -8,6 +8,7 @@ export const useProductStore = create((set,get) => ({
     products:[],
     loading:false,
     error:null,
+    currentProduct:null,
 
     formData: {
         name:"",
@@ -28,6 +29,7 @@ export const useProductStore = create((set,get) => ({
             await get().fetchProducts();
             get().resetForm();
             Toast.success("Product added successfully");
+            
         } catch (error) {
             console.log("Error adding data", error);
             Toast.error("Something went wrong");
@@ -66,6 +68,40 @@ export const useProductStore = create((set,get) => ({
             set({loading: false});
         }
     },
+
+    fetchProduct: async (id) => {
+        set({loading:true})
+        try {
+            const response = await axios.get(`${BASE_URL}/api/products/${id}`);
+            set({currentProduct:response.data.data,
+                formData: response.data.data,
+                error:null
+            });
+        } catch (error) {
+            console.log({error: "Error in fetchProduct", error});
+            set({currentProduct: null });
+            Toast.error("Something went wrong")
+        } finally {
+            set({loading:false})
+        }
+    },
+
+    updateProduct: async(id) => {
+        set({loading:true})
+        try {
+            const { formData } = get()
+            const response = await axios.put(`${BASE_URL}/api/products/${id}`, formData);
+            set({currentData:response.data.data});
+            Toast.success("Product updated successfully");
+        } catch (error) {
+            console.log({error: "Error updating in updateProduct", error});
+            set({currentData:null});
+            Toast.error("Something went wrong")
+        } finally {
+            set({loading:false})
+        }
+
+    }
 
 
 

@@ -26,8 +26,14 @@ function ProductCard({product}) {
                 <EditIcon className="size-4" />
             </Link>
 
-            <button className="btn btn-sm btn-error btn-outline mb-3 mr-3"
-            onClick={() => deleteProduct(product.id)}>
+            <button
+                className="btn btn-sm btn-error btn-outline mb-3 mr-3"
+                onClick={() => {
+                    if (window.confirm("Are you sure you want to delete this?")) {
+                        deleteProduct(product.id)
+                    }
+                }}
+            >
                 <Trash2Icon className="size-4" />
             </button>
 

@@ -81,9 +81,13 @@
 
                     {/* Add or Remove */}
                     <div className="modal-action">
-                        <form method="dialog">
-                            <button className="btn btn-ghost">Cancel</button>
-                        </form>
+                        <button
+                            type="button"
+                            className="btn btn-ghost"
+                            onClick={() => add_modal_ref.current?.close()}
+                        >
+                            Cancel
+                        </button>
                         <button
                         type="submit"
                         className="btn btn-primary mix-w-120px"
