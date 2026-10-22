@@ -18,13 +18,14 @@ export const getProducts = async (req, res) => {
 
 export const getProduct = async (req, res) => {
     try {
-        await sql`
-            SELECT * FROM products WHERE id = ${req.params.id}
-        `;
-
-        res.status(200).json({success: true, message: "Product fetched successfully"});
-    } catch (error) {  
+        const product = await sql`SELECT * FROM products WHERE id = ${req.params.id}`;
+        if (product.length === 0) {
+            return res.status(404).json({ success: false, message: "Product not found" });
+        }
+        res.status(200).json({ success: true, data: product[0] });
+    } catch (error) {
         console.log("Error fetching product:", error);
+        res.status(500).json({ success: false, message: "Error fetching product" });
     }
 };
 

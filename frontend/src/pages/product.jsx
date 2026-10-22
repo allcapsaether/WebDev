@@ -1,6 +1,6 @@
 import React from 'react'
 
-function product() {
+function Product() {
   return (
     <div>
       product
@@ -8,4 +8,4 @@ function product() {
   )
 }
 
-export default product
+export default Product

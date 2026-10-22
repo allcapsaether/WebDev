@@ -1,9 +1,11 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 
-import Navbar from "./components/navbar"
-import HomePage from "./pages/home";
-import ProductPage from "./pages/product"; 
+import Navbar from "./components/Navbar.jsx"
+import Home from "./pages/Home.jsx";
+import Product from "./pages/Product.jsx"; 
+
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -13,10 +15,13 @@ function App() {
       <Navbar />
 
       <Routes>  
-        <Route path="/" element={<HomePage />} />
-        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<Product />} />
 
       </Routes>
+
+      <Toaster />
+
     </div>
     </>
   )

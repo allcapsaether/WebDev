@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useResolvedPath } from 'react-router-dom'
 import { ShoppingBagIcon } from "lucide-react"
 
-function navbar() {
+function Navbar() {
   const {pathname} =  useResolvedPath()
   const isHomePage = pathname === "/"
 
@@ -45,4 +45,4 @@ function navbar() {
   )
 }
 
-export default navbar
+export default Navbar
