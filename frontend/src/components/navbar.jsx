@@ -7,7 +7,7 @@ function navbar() {
   const isHomePage = pathname === "/"
 
   return (
-    <div className="bg-base-100/80 backdrop-blur-lg border-b border-base-content/10 stick top-0 z-50">
+    <div className="bg-base-100/80 backdrop-blur-lg border-b border-base-content/10 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto">
         <div className="navbar px-4 min-h-16 justify-between">
 
@@ -23,7 +23,7 @@ function navbar() {
             </Link>
           </div>
 
-          <div className="flex-items-center">
+          <div className="flex items-center">
             {isHomePage && (
               <div className="indicator">
                 <div className="p-2 rounded-full hover:bg-base-200 transition-colors">

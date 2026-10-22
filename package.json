@@ -13,6 +13,7 @@
   "dependencies": {
     "@arcjet/node": "^1.14.1",
     "@neondatabase/serverless": "^1.2.0",
+    "arcjet": "^1.14.1",
     "cors": "^2.8.6",
     "dotenv": "^18.0.8",
     "express": "^5.3.0",

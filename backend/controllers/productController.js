@@ -8,9 +8,10 @@ export const getProducts = async (req, res) => {
         `;
 
         console.log("Products fetched", products)
-        res.status(200).json({success: true, message: "Products fetched successfully"});
+        res.status(200).json({success: true, data: products });
     } catch (error) {  
         console.log("Error fetching products:", error);
+        res.status(500).json({success:false, message: "Internal Server Error" })
     }
 
 };
@@ -18,7 +19,7 @@ export const getProducts = async (req, res) => {
 export const getProduct = async (req, res) => {
     try {
         await sql`
-            SELECT * FROM products WHERE id == ${req.params.id}
+            SELECT * FROM products WHERE id = ${req.params.id}
         `;
 
         res.status(200).json({success: true, message: "Product fetched successfully"});
