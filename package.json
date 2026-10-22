@@ -4,7 +4,9 @@
   "description": "",
   "main": "backend/server.js",
   "scripts": {
-    "dev": "nodemon backend/server.js"
+    "dev": "nodemon backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "node backend/server.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,9 @@
     "vite": "^8.3.4"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "nodemon": "^1.14.10"
+  },
+  "allowScripts": {
+    "nodemon@1.19.4": true
   }
 }
