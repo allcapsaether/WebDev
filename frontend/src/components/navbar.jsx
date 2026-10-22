@@ -1,7 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useResolvedPath } from 'react-router-dom'
+import { ShoppingBagIcon } from "lucide-react"
 
 function navbar() {
+  const {pathname} =  useResolvedPath()
+  const isHomePage = pathname === "/"
+
   return (
     <div className="bg-base-100/80 backdrop-blur-lg border-b border-base-content/10 stick top-0 z-50">
       <div className="max-w-7xl mx-auto">
@@ -17,6 +21,18 @@ function navbar() {
                 </span>
               </div>
             </Link>
+          </div>
+
+          <div className="flex-items-center">
+            {isHomePage && (
+              <div className="indicator">
+                <div className="p-2 rounded-full hover:bg-base-200 transition-colors">
+                  <ShoppingBagIcon className="size-5" />
+                  <span className="badge badge-sm badge-primary indicator-item">100</span>
+
+                </div>
+              </div>
+            )} 
           </div>
         
 
