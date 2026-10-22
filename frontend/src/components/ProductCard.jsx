@@ -4,7 +4,8 @@ import { useProductStore } from '../store/useProductStore';
 
 
 function ProductCard({product}) {
-    const { deleteProduct } = useProductStore();
+    const { deleteProduct, resetForm } = useProductStore();
+
     return <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
         {/* product image */}
         <figure className="relative pt-[56.25%]">
@@ -31,6 +32,7 @@ function ProductCard({product}) {
                 onClick={() => {
                     if (window.confirm("Are you sure you want to delete this?")) {
                         deleteProduct(product.id)
+                        resetForm();
                     }
                 }}
             >
